@@ -1,6 +1,6 @@
 /**
  * Angular Carousel - Mobile friendly touch carousel for AngularJS
- * @version v0.3.10 - 2015-02-11
+ * @version v0.3.10 - 2015-03-13
  * @link http://revolunet.github.com/angular-carousel
  * @author Julien Bouquillon <julien@revolunet.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -72,7 +72,7 @@ angular.module('angular-carousel')
 angular.module('angular-carousel').run(['$templateCache', function($templateCache) {
   $templateCache.put('carousel-indicators.html',
       '<div class="rn-carousel-indicator">\n' +
-        '<span ng-repeat="slide in slides" ng-class="{active: $index==index}" ng-click="goToSlide($index)">●</span>' +
+        '<span ng-repeat="slide in slides" ng-class="{active: $index==index}" ng-click="goToSlide($index)"></span>' +
       '</div>'
   );
 }]);
@@ -485,7 +485,7 @@ angular.module('angular-carousel').run(['$templateCache', function($templateCach
                                 scope.$parent.$watch(indexModel, function(newValue, oldValue) {
 
                                     if (newValue !== undefined && newValue !== null) {
-                                        if (currentSlides && newValue >= currentSlides.length) {
+                                        if (currentSlides && currentSlides.length > 0 && newValue >= currentSlides.length) {
                                             newValue = currentSlides.length - 1;
                                             updateParentIndex(newValue);
                                         } else if (currentSlides && newValue < 0) {
